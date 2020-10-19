@@ -1,46 +1,39 @@
-// questions.js
-import { saveQuestion } from '../utils/api';
-import { addQuestionToUser } from '../actions/users';
+import { saveQuestionAnswer, saveQuestion } from '../utils/_DATA'
+import { handleInitialData } from './shared'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
+
+export function handleSaveQuestionAnswer(answerObj) {
+  return dispatch => {
+    dispatch(showLoading())
+
+    return saveQuestionAnswer({
+      ...answerObj
+    })
+      .then(() => dispatch(handleInitialData(answerObj.authedUser)))
+      .then(() => dispatch(hideLoading()))
+  }
+}
+
+export function handleSaveQuestion(info) {
+  console.log('questionObj: ', info)
+  return dispatch => {
+    dispatch(showLoading())
+
+    return saveQuestion({
+      ...info,
+      author: info.authedUser
+    })
+      .then(res => dispatch(handleInitialData(res.author)))
+      .then(() => console.log('plonk'))
+      .then(() => dispatch(hideLoading()))
+  }
+}
 
 export function receiveQuestions(questions) {
-    return {
-        type: RECEIVE_QUESTIONS,
-        questions
-    };
-}
-
-// questions.js
-export const ADD_ANSWER_TO_QUESTION = 'ADD_ANSWER_TO_QUESTION';
-
-export function addAnswerToQuestion(authUser, qid, answer) {
   return {
-    type: ADD_ANSWER_TO_QUESTION,
-    authUser,
-    qid,
-    answer
-  };
-}
-
-
-
-export const ADD_QUESTION = 'ADD_QUESTION';
-
-function addQuestion(question) {
-  return {
-    type: ADD_QUESTION,
-    question
-  };
-}
-
-export function handleSaveQuestion(optionOneText, optionTwoText, author) {
-  return dispatch => {
-    return saveQuestion({ optionOneText, optionTwoText, author }).then(
-      question => {
-        dispatch(addQuestion(question));
-        dispatch(addQuestionToUser(question));
-      }
-    );
-  };
+    type: RECEIVE_QUESTIONS,
+    questions
+  }
 }
