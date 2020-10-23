@@ -2,14 +2,14 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from '../components/Dashboard'
-import LogInPage from './LogInPage'
+import Login from './Login'
 import LoadingBar from 'react-redux-loading'
 import Leaderboard from '../components/Leaderboard'
-import NewQuestion from '../components/NewQuestion'
-import TakeVote from '../components/TakeVote'
-import Navbar from './Navbar'
+import CreatePoll from './CreatePoll'
+import VotePoll from '../components/VotePoll'
+import Navigationbar from './Navigationbar'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import PrivateRoute from './PrivateRoute'
+import UserRoute from './UserRoute'
 
 class App extends Component {
   componentWillMount() {
@@ -21,17 +21,17 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div>
-            <Navbar />
+            <Navigationbar />
             {this.props.loading === true ? null : (
               <div>
-                <Route path="/" exact component={LogInPage} />
-                <PrivateRoute path="/home" component={Dashboard} />
-                <PrivateRoute
+                <Route path="/" exact component={Login} />
+                <UserRoute path="/home" component={Dashboard} />
+                <UserRoute
                   path="/question/:question_id"
-                  component={TakeVote}
+                  component={VotePoll}
                 />
-                <PrivateRoute path="/add" component={NewQuestion} />
-                <PrivateRoute path="/leaderboard" component={Leaderboard} />
+                <UserRoute path="/add" component={CreatePoll} />
+                <UserRoute path="/leaderboard" component={Leaderboard} />
               </div>
             )}
           </div>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../css/question.css'
-import '../css/takeVote.css'
+import '../css/pollquestion.css'
+import '../css/pollvote.css'
 import { handleSaveQuestionAnswer } from '../actions/questions'
 import { Link } from 'react-router-dom'
 
-class TakeVote extends Component {
+class VotePoll extends Component {
   handleVote = answerObj => {
     const { dispatch } = this.props
     dispatch(handleSaveQuestionAnswer(answerObj))
@@ -44,25 +44,28 @@ class TakeVote extends Component {
     if (questionAnswer === undefined) {
       return (
         <div>
-          <Link to="/home">
-            <button className="returnBtn">
-              &#60;&nbsp;&nbsp;Return to questions
+          <div className="back-button">
+            <Link to="/home">
+              <button className="returnBtn">
+                &#60;&nbsp;&nbsp;Back to questions
             </button>
-          </Link>
+            </Link>
+          </div>
           <div className="vote-container">
-            <div className="avatar-holder">
-              <img
-                src={users[question.author].avatarURL}
-                alt={`Avatar of ${users[question.author].avatarURL}`}
-                className="avatar"
-              />
-              <h3 className="author">
-                {`${users[question.author].name}`} asks:
+            <div className="questiona">
+              <div className="avatar-holder-pollvote">
+                <img
+                  src={users[question.author].avatarURL}
+                  alt={`Avatar of ${users[question.author].avatarURL}`}
+                  className="avatar"
+                />
+                <h3 className="author">
+                  {`${users[question.author].name}`} asks:
               </h3>
+              </div>
             </div>
-            <br />
-            <div>
-              <h1>Would you rather</h1>
+            <div className="question-body-pollVote" >
+              <h2 className="centre">Would you rather!</h2>
               <h3>
                 A: {question.optionOne.text}
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -96,76 +99,82 @@ class TakeVote extends Component {
                 </button>
               </h3>
             </div>
+
           </div>
         </div>
       )
     } else {
       return (
         <div>
-          <Link to="/home">
-            <button className="returnBtn">
-              &#60;&nbsp;&nbsp;Return to questions
+          <div className="back-button">
+            <Link to="/home">
+              <button className="returnBtn">
+                &#60;&nbsp;&nbsp;Back to questions
             </button>
-          </Link>
+            </Link>
+          </div>
           <div className="vote-container">
-            <div className="avatar-holder">
-              <img
-                src={users[question.author].avatarURL}
-                alt={`Avatar of ${users[question.author].avatarURL}`}
-                className="avatar"
-              />
-              <h3 className="author">
-                {`${users[question.author].name}`} asks:
+            <div className="questiona">
+              <div className="avatar-holder-pollvote">
+                <img
+                  src={users[question.author].avatarURL}
+                  alt={`Avatar of ${users[question.author].avatarURL}`}
+                  className="avatar"
+                />
+                <h3 className="author">
+                  {`${users[question.author].name}`} asks:
               </h3>
+              </div>
             </div>
-            <br />
-            <div>
-              <h1>Would you rather</h1>
-              <div className="optionOneResults">
-                <h3
-                  className={
-                    users[authedUser].answers[question.id] === 'optionOne'
-                      ? 'yourAnswer'
-                      : ''
-                  }
-                >
-                  A: {question.optionOne.text}{' '}
-                  <small>
-                    {users[authedUser].answers[question.id] === 'optionOne'
-                      ? '- your answer'
-                      : ''}
-                  </small>
-                </h3>
-              </div>
+            <div className="question-body-pollVote" >
               <div>
-                <h3
-                  className={
-                    users[authedUser].answers[question.id] === 'optionTwo'
-                      ? 'yourAnswer'
-                      : ''
-                  }
-                >
-                  B: {question.optionTwo.text}{' '}
-                  <small>
-                    {users[authedUser].answers[question.id] === 'optionTwo'
-                      ? '- your answer'
-                      : ''}
-                  </small>
-                </h3>
-              </div>
-              <div>
-                <hr />
-                <h4>What other users voted:</h4>
-                <p>
-                  A: {question.optionOne.text} | {optionOneAmount} votes (
+                <h1>Would you rather</h1>
+                <div className="optionOneResults">
+                  <h3
+                    className={
+                      users[authedUser].answers[question.id] === 'optionOne'
+                        ? 'yourAnswer'
+                        : ''
+                    }
+                  >
+                    A: {question.optionOne.text}{' '}
+                    <small>
+                      {users[authedUser].answers[question.id] === 'optionOne'
+                        ? '- your answer'
+                        : ''}
+                    </small>
+                  </h3>
+                </div>
+                <div>
+                  <h3
+                    className={
+                      users[authedUser].answers[question.id] === 'optionTwo'
+                        ? 'yourAnswer'
+                        : ''
+                    }
+                  >
+                    B: {question.optionTwo.text}{' '}
+                    <small>
+                      {users[authedUser].answers[question.id] === 'optionTwo'
+                        ? '- your answer'
+                        : ''}
+                    </small>
+                  </h3>
+                </div>
+                <div>
+                  <hr />
+                  <h4>What other users voted:</h4>
+                  <p>
+                    A: {question.optionOne.text} | {optionOneAmount} votes (
                   {optionOnePercentage}
                   %)
                 </p>
-                <p>
-                  B: {question.optionTwo.text} | {optionTwoAmount} votes (
+                  <p>
+                    B: {question.optionTwo.text} | {optionTwoAmount} votes (
                   {optionTwoPercentage}
                   %)
                 </p>
+                </div>
               </div>
             </div>
           </div>
@@ -191,4 +200,4 @@ function mapStateToProps({ questions, users, authedUser }, props) {
   }
 }
 
-export default connect(mapStateToProps)(TakeVote)
+export default connect(mapStateToProps)(VotePoll)

@@ -9,7 +9,7 @@ export function getInitialData() {
   )
 }
 
-export const fakeAuth = {
+export const mockAuth = {
   isAuthenticated: false,
   authenticate(cb) {
     this.isAuthenticated = true

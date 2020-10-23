@@ -1,11 +1,16 @@
 .leaderboard-user {
-	margin-bottom: 70px;
+	margin-bottom: 35px;
 }
-
 .avatar-holder {
+	padding: 12px;
 	margin-bottom: 100px;
-}
+	border: 1px solid yellowgreen;
+	border-radius: 20px 20px 20px 20px;
 
+}
 .avatar-holder-none {
 	margin-bottom: 12px;
+}
+.center {
+	text-align: center;
 }

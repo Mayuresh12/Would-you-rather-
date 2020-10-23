@@ -1,12 +1,10 @@
-.questions {
-	list-style: none;
+.category-toggler {
+	margin-left: 46.5%;
+	margin-top: 2%;
 }
-
 .question {
 	padding-bottom: 24px;
 }
-
-.category-toggler {
-	margin-left: 42%;
-	margin-top: 2%;
+.questions {
+	list-style: none;
 }

@@ -4,7 +4,7 @@ import '../css/new-question.css'
 import { handleSaveQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
 
-class NewQuestion extends Component {
+class CreatePoll extends Component {
   state = {
     redirectHome: false,
     optionOneText: '',
@@ -45,24 +45,23 @@ class NewQuestion extends Component {
     return (
       <div>
         <div className="vote-container wyr-form">
-          <h2>Would you rather:</h2>
+          <h1 className="newPollheader">Create a New Poll</h1>
+          <h2 className="container">Would you rather...!</h2>
           <form onSubmit={this.createQuestion}>
             <input
-              placeholder="Answer One"
+              placeholder="Enter option 1..."
               onChange={this.noticeChange}
               value={optionOneText}
               name="optionOneText"
             />
-            <br />
             <input
-              placeholder="Answer Two"
+              placeholder="Enter option 2..."
               onChange={this.noticeChange}
               value={optionTwoText}
               name="optionTwoText"
             />
-            <br />
-            <button type="submit" disabled={dontPost}>
-              Ask question
+            <button className="submit-button" type="submit" disabled={dontPost}>
+              Submit
             </button>
           </form>
         </div>
@@ -77,4 +76,4 @@ function mapStateToProps({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+export default connect(mapStateToProps)(CreatePoll)

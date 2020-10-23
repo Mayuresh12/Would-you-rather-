@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import '../css/login.css'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authUser'
-import User from './User'
+import User from './UserCard'
 
-class LogInPage extends Component {
+class Login extends Component {
   componentWillMount() {
     this.props.dispatch(setAuthedUser(false))
   }
@@ -13,7 +13,7 @@ class LogInPage extends Component {
     const { userIds, location } = this.props
     return (
       <div className="vote-container">
-        <h2 className = "login-message">Who are you?</h2>
+        <h2 className="login-message">Welcome 👋!</h2>
         {userIds.map(id => (
           <div key={id}>
             <User id={id} location={location} />
@@ -32,4 +32,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(LogInPage)
+export default connect(mapStateToProps)(Login)

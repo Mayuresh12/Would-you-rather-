@@ -10,7 +10,7 @@ class Leaderboard extends Component {
 
     return (
       <div className="vote-container">
-        <h2>Leaderboard</h2>
+        <h2 className="center">Leaderboard</h2>
 
         {leaderboardPlacements.sort((a, b) => b.points - a.points).map(user => (
           <div key={user.id}>
@@ -20,14 +20,14 @@ class Leaderboard extends Component {
                 alt={`Avatar of ${users[user.id].avatarURL}`}
                 className="avatar leaderboard-user"
               />
-              <h3 className="author">
+              <h4 className="author">
                 {`${users[user.id].name}`} <small>({user.points} pts)</small>
-              </h3>
+              </h4>
               <hr />
               <p>
-                Questions answered: {Object.keys(users[user.id].answers).length}
+                Answered questions: {Object.keys(users[user.id].answers).length}
               </p>
-              <p>Questions asked: {users[user.id].questions.length}</p>
+              <p>Created questions: {users[user.id].questions.length}</p>
             </div>
           </div>
         ))}

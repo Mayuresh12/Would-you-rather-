@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../css/question.css'
+import '../css/pollquestion.css'
 import { formatDate } from '../utils/_DATA'
 import { Link } from 'react-router-dom'
 
@@ -23,7 +23,7 @@ class Question extends Component {
         </div>
         <div className="question-footer">
           <Link to={`/question/${question_id}`}>
-            <button className="vote-button">TAKE A VOTE</button>
+            <button className="poll-button">TAKE A VOTE</button>
           </Link>
         </div>
       </div>

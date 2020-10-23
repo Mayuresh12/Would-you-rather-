@@ -3,7 +3,7 @@ import '../css/user.css'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authUser.js'
 import { Redirect } from 'react-router-dom'
-import { fakeAuth } from '../utils/api'
+import { mockAuth } from '../utils/api'
 
 class User extends Component {
   state = {
@@ -13,7 +13,7 @@ class User extends Component {
   handleLogin = id => {
     const { dispatch } = this.props
 
-    fakeAuth.authenticate(() => {
+    mockAuth.authenticate(() => {
       dispatch(setAuthedUser(id))
       this.setState({ redirectToReferrer: true })
     })
@@ -39,13 +39,15 @@ class User extends Component {
               alt={`Avatar of ${users[user.id].avatarURL}`}
               className="avatar"
             />
-            <h3 className="author">{`${users[user.id].name}`}</h3>
-            <button
-              className="loginButton"
-              onClick={() => this.handleLogin(user.id)}
-            >
-              Log in
+            <h3 className="author">{`${users[user.id].name}`}
+              <button
+                className="loginButton"
+                onClick={() => this.handleLogin(user.id)}
+              >
+                Log in
             </button>
+            </h3>
+
           </div>
         </div>
       </div>
